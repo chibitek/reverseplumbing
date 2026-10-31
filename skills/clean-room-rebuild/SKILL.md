@@ -79,6 +79,21 @@ Traffic sequences show observed client behavior, not server implementation or un
 If live access is unavailable, continue with documented analysis, label its limits and list the exact
 live checks still needed. Do not call it a completed end-to-end run.
 
+## Visual and interaction evidence (required)
+
+Declare the top workflows before capture. Using separately approved computer/browser tools, save
+before/after PNGs, accessibility snapshots when available, actions and observed postconditions.
+Redact private content locally before model use and hash the reviewed files. Import a version 1
+ledger with `inspect_workflow_evidence`, then inspect each screenshot with `inspect_visual_evidence`.
+See [the operator guide](../../docs/workflow-evidence.md) for the contract and limits.
+
+Include navigation, search, primary action, queue or equivalent state management, and failures/empty
+states when available. Link optional HAR evidence to the step that produced it. Keep untested and
+blocked workflows in the manifest with reasons; never substitute binary-reader success for live
+coverage. Map every feature to claims and workflows. Explain disagreement between pixels and the
+accessibility tree. Verify image citations, action results, source labels and coverage before reporting.
+The server validates references and hashes, not truth; interpreting images is the client's job.
+
 ## 3. Evidence ledger
 
 Give each finding an ID, source path or URL, observation date, and exactly one label:

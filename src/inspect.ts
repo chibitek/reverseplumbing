@@ -242,7 +242,10 @@ function version(packed: number) {
 const CPU_NAMES: Record<number, string> = { 7: 'i386', 0x0100_0007: 'x86_64', 12: 'arm', 0x0100_000c: 'arm64', 0x0200_000c: 'arm64_32' };
 function architecture(cpuType: number, cpuSubtype: number) {
   const base = CPU_NAMES[cpuType >>> 0] ?? `cpu:0x${(cpuType >>> 0).toString(16)}`;
-  return cpuType >>> 0 === 0x0100_000c && (cpuSubtype & 0xff) === 2 ? 'arm64e' : base;
+  if (cpuType >>> 0 !== 0x0100_000c) return base;
+  const subtype = cpuSubtype & 0x00ff_ffff;
+  return ({ 0: 'arm64', 1: 'arm64v8', 2: 'arm64e', 12: 'arm64e.x1' } as Record<number, string>)[subtype]
+    ?? `arm64-subtype:${subtype}`;
 }
 
 const MACHO_FLAGS: [number, string][] = [[0x1, 'noUndefs'], [0x4, 'dyldLink'], [0x80, 'twoLevel'], [0x2000, 'subsectionsViaSymbols'],

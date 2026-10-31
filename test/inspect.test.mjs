@@ -220,7 +220,7 @@ test('code signature SuperBlob yields identity, runtime flags and entitlements',
   assert.equal(parsed.teamId, 'ABCDE12345');
   assert.equal(parsed.hardenedRuntime, true);
   assert.equal(parsed.adHoc, false);
-  assert.equal(parsed.signedBy, 'developer-certificate');
+  assert.equal(parsed.signedBy, 'cms-present-unverified');
   assert.equal(parsed.cmsBytes, 40);
   assert.equal(parsed.hashType, 'sha256');
   assert.equal(parsed.pageSize, 4096);

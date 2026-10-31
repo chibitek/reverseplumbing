@@ -18,7 +18,7 @@ const client = new Client({ name: 'reverseplumbing-local-proof', version: '0.1.0
 try {
   await client.connect(transport);
   const { tools } = await client.listTools();
-  assert.equal(tools.length, ghidra ? 16 : 15);
+  assert.equal(tools.length, ghidra ? 18 : 17);
   // Only the opt-in Ghidra tool launches a process, and it says so.
   const launcher = tools.filter(tool => tool.annotations.openWorldHint);
   assert.deepEqual(launcher.map(tool => [tool.name, tool._meta?.launchesProcess]), ghidra ? [['analyze_with_ghidra', true]] : []);
