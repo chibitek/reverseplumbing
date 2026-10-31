@@ -1,0 +1,1 @@
+CHIBI_1.0 { global: chibi_*; local: *; };

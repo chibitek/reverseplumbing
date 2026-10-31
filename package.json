@@ -1,0 +1,11 @@
+{
+  "name": "@chibitek/reverseplumbing",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": { "node": ">=22.14.0" },
+  "scripts": { "build": "tsc", "test": "npm run build && node --test test/*.test.mjs", "start": "node dist/server.js" },
+  "dependencies": { "@modelcontextprotocol/sdk": "1.32.1", "zod": "4.6.7" },
+  "devDependencies": { "typescript": "5.9.3", "@types/node": "22.19.15" }
+}
