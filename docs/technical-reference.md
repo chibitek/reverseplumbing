@@ -15,6 +15,8 @@ one declares `openWorldHint: true` and `_meta.launchesProcess: true` and must ne
 
 | Tool | Reads | Returns |
 | --- | --- | --- |
+| `inspect_visual_evidence` | Reviewed PNG plus SHA-256 and review attestation | MCP image, dimensions and digest; no automatic redaction or OCR |
+| `inspect_workflow_evidence` | Reviewed version 1 evidence ledger and local artifacts | Validated evidence, action sequence, feature claims, declared workflow coverage and gaps |
 | `inspect_apple_bundle` | `.app` folder | Identity and version, Sparkle update feed and pinning, frameworks, privacy prompts, seal, notarization ticket, provisioning profile |
 | `inspect_apple_macho` | Mach-O, thin or universal | Per-architecture header, load commands, UUID, build target, linked libraries, rpaths, SHA-256 |
 | `inspect_apple_signature` | Mach-O | Signing identifier, team, cdhash, hardened runtime, entitlements (structural parse, not cryptographic verification) |
@@ -354,3 +356,7 @@ unsupported bodies have explicit states. Bodies are limited to 1 MiB, shapes to 
 Run `npm test` for canary redaction tests, shape/route mapping checks, bounds, parser errors and
 the existing stdio/no-network/Ghidra sandbox gates.
 
+
+## Visual evidence operator guide
+
+See [Visual and workflow evidence](workflow-evidence.md) for capture, review, ledger schema, image inspection, feature mapping and coverage checks.

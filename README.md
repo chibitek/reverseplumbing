@@ -45,6 +45,8 @@ Installation downloads dependencies; the running server itself makes no network 
 | Inspect Android packages | Manifest, DEX inventory, native libraries and signing structures | No decompilation or signing trust verification |
 | Inspect Electron and JavaScript packaging | Archive inventory and locally available source maps | Remote source maps are never downloaded |
 | Map saved browser traffic | Templated endpoints, page call sequences, JSON shapes and observed auth schemes | Values are omitted; unknown names are generalized; capture order does not prove causality |
+| Review visual evidence | Reviewed PNGs returned as images, accessibility snapshots and hashed source files | Capture and redaction happen separately; no automatic OCR |
+| Map tested workflows | Before/after evidence, actions, feature claims and explicit coverage gaps | Operator-authored claims; only declared workflows count |
 | Opt into deeper native analysis | Functions identified by an existing Ghidra installation | macOS only; explicit opt-in and network-denied sandbox required |
 
 ## How it works
@@ -66,7 +68,7 @@ or execute an inspected app. Ghidra is the single optional subprocess and must b
 | --- | --- |
 | Understand package structure or dependencies | Start with the built-in readers |
 | Identify native functions | Explicitly opt into the existing Ghidra installation |
-| Verify an actual user workflow | Observe the licensed app separately; metadata is not enough |
+| Verify an actual user workflow | Capture the licensed app separately, then import [workflow evidence](docs/workflow-evidence.md) |
 | Design an original replacement | Use the [clean-room method](skills/clean-room-rebuild/SKILL.md) and an evidence-backed behavior spec |
 
 ## Privacy and limits

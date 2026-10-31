@@ -96,7 +96,7 @@ export function inspectSignatureBlob(blob: Buffer, sliceBytes?: number) {
 
   return {
     ...directory,
-    signedBy: cmsBytes ? 'developer-certificate' : directory.adHoc ? 'ad-hoc' : 'none',
+    signedBy: cmsBytes ? 'cms-present-unverified' : directory.adHoc ? 'ad-hoc' : 'none',
     cmsBytes,
     // A codeLimit short of the slice means bytes past it are outside the seal.
     sealsWholeSlice: sliceBytes === undefined ? null : directory.codeLimit >= sliceBytes - (blob.length + 16),

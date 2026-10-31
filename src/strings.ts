@@ -27,10 +27,15 @@ function splitStrings(region: Buffer) {
   return out;
 }
 
-function hostOf(url: string) {
-  const after = url.indexOf('://') + 3;
-  const end = url.slice(after).search(/[\/:?#]/);
-  return (end < 0 ? url.slice(after) : url.slice(after, after + end)).toLowerCase();
+export function hostOf(url: string): string | null {
+  // A format placeholder is not a host. Parse only the authority so path
+  // placeholders do not hide a real host; never return userinfo or a port.
+  const authority = url.split('://')[1]?.split(/[/?#]/, 1)[0];
+  if (!authority || /[%{}<>]/.test(authority)) return null;
+  try {
+    const parsed = new globalThis.URL(url);
+    return parsed.hostname.toLowerCase() || null;
+  } catch { return null; }
 }
 
 type Slice = { offset: number; prefix: Buffer };
@@ -63,7 +68,7 @@ export async function scanTextSections(slices: Slice[], read: (offset: number, s
       total += strings.length;
 
       for (const text of strings) {
-        if (URL.test(text)) { urls.add(text); hosts.add(hostOf(text)); }
+        if (URL.test(text)) { urls.add(text); const host = hostOf(text); if (host) hosts.add(host); }
         else if (ENDPOINT.test(text)) endpoints.add(text);
         if (found.section === '__objc_classname') objcClasses.add(text);
         if (found.section === '__swift5_reflstr') swiftFields.add(text);
