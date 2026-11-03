@@ -19,6 +19,7 @@ before relying on any exemption, and stop if a step below would conflict with ei
 |---|---|
 | Installed app | Installed-app track with ReversePlumbing |
 | SaaS | Legitimate session, public sources, offline ReversePlumbing analysis |
+| No binary or HAR access, only screenshots or recordings | Screenshot-only track (2C) |
 | Analysis, learn, teardown | Stop after the spec and report |
 | Approved rebuild | Build original code from the approved behavior spec |
 
@@ -78,6 +79,30 @@ Traffic sequences show observed client behavior, not server implementation or un
 
 If live access is unavailable, continue with documented analysis, label its limits and list the exact
 live checks still needed. Do not call it a completed end-to-end run.
+
+## 2C. Screenshot-only analysis (no ReversePlumbing tools)
+
+Use this track when there is no binary, bundle or HAR to feed the tools, only screenshots or screen
+recordings: a mobile app you will not install, a competitor dashboard behind a login you will not
+session-capture, or a quick first pass before deciding a deeper one is worth it.
+
+1. Checklist first. Turn the request into a checklist of what you need to know to rebuild it: every
+   screen, every action, every rule, and the data the app stores.
+2. Feature by feature. For each feature: where the user starts, what they do, what changes, and
+   what they end up with. Start with the smallest overview, then follow one feature at a time.
+   Never judge behavior from a label or name alone.
+3. Label findings per the evidence ledger in step 3, citing the file and frame or timestamp in place
+   of a tool output. A frame shows one state only: label what it shows OBSERVED-LIVE if you captured
+   it yourself, SECONDHAND if someone else did. Transitions, rules, validation and anything server-side
+   are INFERRED at best.
+4. Sketch the entities for the behavior spec in step 4: each entity, its visible fields, and which
+   screen creates, changes or shows it. Storage and schema are INFERRED, never observed.
+5. Close the checklist: answered, partly answered or open. For each open item, say exactly what to
+   click, record or screenshot next. Never call it complete with items open.
+
+This track skips the 2A and 2B tool calls only. It still produces the full evidence ledger, behavior
+spec, improve matrix and not-copying list in steps 3 to 7, and it is never a completed end-to-end
+run. No install and no new account beyond what you already use; section 1 still applies in full.
 
 ## Visual and interaction evidence (required)
 
